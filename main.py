@@ -1,3 +1,11 @@
+'''
+Case 1
+Group:
+Uchanov Igor
+Fishchukova Sofia
+Tsvykh Viktoria
+'''
+
 from deep_translator import GoogleTranslator
 from textblob import TextBlob
 
