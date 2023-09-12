@@ -1,18 +1,22 @@
-'''
+"""
 Case 1
 Group:
 Uchanov Igor
 Fishchukova Sofia
 Tsvykh Viktoria
-'''
+"""
 
 from deep_translator import GoogleTranslator
 from textblob import TextBlob
 
-# text = 'Я нас росла липа. Липа стала стара. Липа стала суха. Липа упала. Прошли папа и Паша. У папы пила. У Паши топорик. Они распилили липу.'
 text = input('Введите текст: ')
+
 num_sentences = text.count('.') + text.count('?') + text.count('!')
 num_words = len(text.split())
+
+if num_sentences == 0:
+    if num_words > 0:
+        num_sentences += 1
 
 vovels = "аоуэиыеёяюaeiouy"
 syllables = 0
@@ -20,8 +24,16 @@ for letter in text.lower():
     if letter in vovels:
         syllables += 1
 
-awl = syllables / num_words
-asl = num_words / num_sentences
+if num_words == 0:
+    awl = syllables
+elif num_words > 0:
+    awl = syllables / num_words
+
+if num_sentences == 0:
+    asl = num_words
+elif num_sentences > 0:
+    asl = num_words / num_sentences
+
 
 flash_index = 206.835 - 1.3 * asl - 60.1 * awl
 text_hardness = ''
@@ -57,6 +69,4 @@ res = f"""Предложений: {num_sentences}
 Тональность текста: {polarity}
 Объективность: {subjectivity}
 """
-
 print(res)
-
