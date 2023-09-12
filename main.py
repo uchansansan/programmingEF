@@ -14,6 +14,7 @@ text = input('Введите текст: ')
 num_sentences = text.count('.') + text.count('?') + text.count('!')
 num_words = len(text.split())
 
+
 if num_sentences == 0:
     if num_words > 0:
         num_sentences += 1
@@ -47,7 +48,7 @@ elif flash_index <= 60:
         text_hardness = 'Очень трудно читать (Для выпускников ВУЗа)'
     else:
         text_hardness = 'Немного трудно читать (Для студентов)'
-en = GoogleTranslator(source='auto', target='en').translate(text)
+en = GoogleTranslator(source= 'auto', target = 'en').translate(text)
 
 polarity = TextBlob(en).sentiment.polarity
 if polarity >= 0.5:
