@@ -3,7 +3,7 @@ Case 1
 Group:
 Uchanov Igor
 Fishchukova Sofia
-Tsvykh Viktoria
+Tsvykh Viktoria 68%
 """
 
 from deep_translator import GoogleTranslator
@@ -27,6 +27,8 @@ for letter in text.lower():
     if letter in vovels:
         syllables += 1
 
+awl = 0
+asl = 0
 if num_words == 0:
     awl = syllables
 elif num_words > 0:
