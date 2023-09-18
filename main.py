@@ -1,7 +1,7 @@
 """
 Case 1
 Group:
-Uchanov Igor
+Uchanov Igor 80%
 Fishchukova Sofia
 Tsvykh Viktoria 68%
 """
