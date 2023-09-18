@@ -8,8 +8,9 @@ Tsvykh Viktoria
 
 from deep_translator import GoogleTranslator
 from textblob import TextBlob
+import ru_local as ru
 
-text = input('Введите текст: ')
+text = input(ru.INPUT_TEXT)
 
 num_sentences = text.count('.') + text.count('?') + text.count('!')
 num_words = len(text.split())
@@ -40,34 +41,35 @@ flash_index = 206.835 - 1.3 * asl - 60.1 * awl
 text_hardness = ''
 if flash_index > 60:
     if 61 <= flash_index < 80:
-        text_hardness = 'Простой язык (Для учеников старших классов)'
+        text_hardness = ru.FLASH_INDEX_1
     else:
-        text_hardness = 'Очень легко читается (Для учеников начальной школы)'
+        text_hardness = ru.FLASH_INDEX_2
 elif flash_index <= 60:
     if 0 <= flash_index < 40:
-        text_hardness = 'Очень трудно читать (Для выпускников ВУЗа)'
+        text_hardness = ru.FLASH_INDEX_4
     else:
-        text_hardness = 'Немного трудно читать (Для студентов)'
+        text_hardness = ru.FLASH_INDEX_3
 en = GoogleTranslator(source= 'auto', target = 'en').translate(text)
 
 polarity = TextBlob(en).sentiment.polarity
 if polarity >= 0.5:
-    polarity = 'Положительно'
+    polarity = ru.POSITIVE_POLARITY
 elif polarity <= -0.5:
-    polarity = "Негативно"
+    polarity = ru.NEGATIVE_POLARITY
 else:
-    polarity = "Нейтрально"
+    polarity = ru.NEUTRAL_POLARITY
 
 subjectivity = f'{round(TextBlob(en).sentiment.subjectivity*100, 1)}%'
 
-res = f"""Предложений: {num_sentences}
-Слов: {num_words}
-Слогов: {syllables}
-Средняя длина предложения в словах: {asl}
-Средняя длина слова в слогах: {awl}
-Индекс удобочитаемости Флэша: {flash_index}
-{text_hardness}
-Тональность текста: {polarity}
-Объективность: {subjectivity}
-"""
-print(res)
+print(ru.SENTENSES, num_sentences)
+print(ru.WORDS, num_words)
+print(ru.SILLABLES, syllables)
+print(ru.ASL, round(asl, 1))
+print(ru.AWL, round(awl, 1))
+print(ru.FLASH_INDEX, round(flash_index, 1))
+print(text_hardness)
+print(ru.POLARITY, polarity)
+print(ru.SUBJECTIVITY, subjectivity)
+
+
+
